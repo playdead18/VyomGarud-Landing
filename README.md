@@ -5,7 +5,7 @@ A modern, responsive landing page for VyomGarud - a military-grade UAV/drone sys
 
 ## 🚀 Live Demo
 
-[View Live Demo](#) *([Add your deployment link here](https://vercel.com/playdead18s-projects/vyom-garud-landing))*
+[View Live Demo](#) *((https://vercel.com/playdead18s-projects/vyom-garud-landing))*
 
 
 ## ✨ Features

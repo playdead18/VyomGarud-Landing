@@ -1,12 +1,13 @@
 // src/components/Navbar.tsx
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { NavItem } from '../types';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +17,36 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  let closeTimer: NodeJS.Timeout;
+
+  const handleMouseEnter = (dropdown: string) => {
+    clearTimeout(closeTimer);
+    setActiveDropdown(dropdown);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  };
+
   const navItems: NavItem[] = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Capabilities', href: '#capabilities' },
     { label: 'Contact', href: '#contact' },
+  ];
+
+  const productItems = [
+    { title: 'Surveillance Drones', desc: 'High-altitude reconnaissance systems' },
+    { title: 'Combat UAVs', desc: 'Tactical strike capabilities' },
+    { title: 'Swarm Systems', desc: 'Coordinated multi-drone operations' },
+  ];
+
+  const resourceItems = [
+    { title: 'Documentation', desc: 'Technical specifications' },
+    { title: 'Case Studies', desc: 'Real-world deployments' },
+    { title: 'Webinars', desc: 'Expert training sessions' },
   ];
 
   return (
@@ -51,6 +77,77 @@ const Navbar: React.FC = () => {
                   {item.label}
                 </a>
               ))}
+              
+              {/* Products Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => handleMouseEnter('products')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button className="text-gray-300 hover:text-primary transition-colors duration-300 font-inter font-medium flex items-center">
+                  Products
+                  <ChevronDown className="w-4 h-4 ml-1" />
+                </button>
+                
+                {activeDropdown === 'products' && (
+                  <div 
+                    className="absolute top-full left-0 mt-2 w-80 bg-charcoal border border-charcoal-light rounded-lg shadow-2xl p-4 animate-fade-in z-50"
+                    onMouseEnter={() => handleMouseEnter('products')}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="space-y-3">
+                      {productItems.map((item, idx) => (
+                        <a
+                          key={idx}
+                          href="#capabilities"
+                          className="block p-3 rounded-lg hover:bg-primary/10 transition-colors"
+                        >
+                          <div className="font-semibold text-white hover:text-primary transition-colors">
+                            {item.title}
+                          </div>
+                          <div className="text-sm text-gray-400 mt-1">{item.desc}</div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Resources Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => handleMouseEnter('resources')}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button className="text-gray-300 hover:text-primary transition-colors duration-300 font-inter font-medium flex items-center">
+                  Resources
+                  <ChevronDown className="w-4 h-4 ml-1" />
+                </button>
+                
+                {activeDropdown === 'resources' && (
+                  <div 
+                    className="absolute top-full left-0 mt-2 w-80 bg-charcoal border border-charcoal-light rounded-lg shadow-2xl p-4 animate-fade-in z-50"
+                    onMouseEnter={() => handleMouseEnter('resources')}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="space-y-3">
+                      {resourceItems.map((item, idx) => (
+                        <a
+                          key={idx}
+                          href="#contact"
+                          className="block p-3 rounded-lg hover:bg-primary/10 transition-colors"
+                        >
+                          <div className="font-semibold text-white hover:text-primary transition-colors">
+                            {item.title}
+                          </div>
+                          <div className="text-sm text-gray-400 mt-1">{item.desc}</div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <a
                 href="#contact"
                 className="bg-primary hover:bg-orange-600 text-white px-6 py-2 rounded-md font-semibold transition-all duration-300 transform hover:scale-105"
@@ -86,6 +183,37 @@ const Navbar: React.FC = () => {
                 {item.label}
               </a>
             ))}
+            
+            {/* Mobile Products */}
+            <div className="border-t border-charcoal-light pt-3 mt-3">
+              <div className="text-gray-400 text-sm font-semibold mb-2 font-inter">Products</div>
+              {productItems.map((item, idx) => (
+                <a
+                  key={idx}
+                  href="#capabilities"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block text-gray-300 hover:text-primary transition-colors duration-300 font-inter py-2 pl-4"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
+
+            {/* Mobile Resources */}
+            <div className="border-t border-charcoal-light pt-3 mt-3">
+              <div className="text-gray-400 text-sm font-semibold mb-2 font-inter">Resources</div>
+              {resourceItems.map((item, idx) => (
+                <a
+                  key={idx}
+                  href="#contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block text-gray-300 hover:text-primary transition-colors duration-300 font-inter py-2 pl-4"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
+            
             <a
               href="#contact"
               onClick={() => setIsMenuOpen(false)}

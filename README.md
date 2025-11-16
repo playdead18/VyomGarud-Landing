@@ -1,18 +1,12 @@
 # VyomGarud - UAV Systems Landing Page
 
-![VyomGarud Banner](https://via.placeholder.com/1200x400/0a0a0a/ff7b00?text=VyomGarud+UAV+Systems)
 
 A modern, responsive landing page for VyomGarud - a military-grade UAV/drone systems company. Built with React, TypeScript, and Tailwind CSS.
 
 ## 🚀 Live Demo
 
-[View Live Demo](#) *(Add your deployment link here)*
+[View Live Demo](#) *([Add your deployment link here](https://vercel.com/playdead18s-projects/vyom-garud-landing))*
 
-## 📸 Screenshots
-
-![Hero Section](https://via.placeholder.com/800x400/0a0a0a/ff7b00?text=Hero+Section)
-![Capabilities Section](https://via.placeholder.com/800x400/0a0a0a/ff7b00?text=Capabilities)
-![Contact Section](https://via.placeholder.com/800x400/0a0a0a/ff7b00?text=Contact+Form)
 
 ## ✨ Features
 
@@ -149,32 +143,6 @@ vyomgarud-landing/
 - ✅ Final polish and testing
 - ✅ README and documentation
 
-## 🚢 Deployment
-
-### Deploy to Vercel (Recommended)
-```bash
-npm install -g vercel
-vercel
-```
-
-### Deploy to Netlify
-```bash
-npm run build
-# Drag and drop the 'build' folder to Netlify dashboard
-```
-
-### Deploy to GitHub Pages
-```bash
-npm install --save-dev gh-pages
-
-# Add to package.json:
-"homepage": "https://yourusername.github.io/vyomgarud-landing",
-"predeploy": "npm run build",
-"deploy": "gh-pages -d build"
-
-# Deploy:
-npm run deploy
-```
 
 ## 🎨 Design Inspiration
 
@@ -250,8 +218,8 @@ This project is created for assessment purposes.
 ## 👤 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@playdead18](https://github.com/playdead18/VyomGarud-Landing)
+- Email: tatkondawar01@gmail.com
 
 ## 🙏 Acknowledgments
 
